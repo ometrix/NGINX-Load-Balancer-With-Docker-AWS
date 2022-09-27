@@ -150,43 +150,6 @@ resource "aws_route_table_association" "c" {
   route_table_id = aws_route_table.lb_route_table.id
 }
 
-# Security Groups
-
-resource "aws_security_group" "default" {
-  name = "default0mar"
-  vpc_id = aws_vpc.main_vpc.id
-
-  #Incoming traffic / trafico de entrada
-  ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port = 443
-    to_port = 443
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port = 80
-    to_port = 80
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  #Outgoing traffic / trafico de entrada
-  egress {
-    from_port = 0
-    protocol = "-1"
-    to_port = 0
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
 # EC2 Ubuntu
 
 resource "aws_instance" "web" {

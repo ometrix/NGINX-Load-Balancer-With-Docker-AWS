@@ -1,3 +1,4 @@
+# AMI Ubuntu Linux
 
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -13,20 +14,6 @@ data "aws_ami" "ubuntu" {
   }
 
   owners = ["099720109477"] # Canonical
-}
-
-# AMI Ubuntu Linux
-
-resource "aws_ami" "ubuntu" {
-  name = "ubuntu"
-
-
-}
-
-variable "ami" {
-  default = [
-
-  ]
 }
 
 # AMI Rocky Linux
