@@ -16,4 +16,4 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y &&
 sudo usermod -aG docker ubuntu
 sudo apt install libwww-perl -y
 
-docker run --name mynginx1  -p 80:80 -d nginx
+docker run -v /home/ubuntu/index.html:/usr/share/nginx/html/index.html -p 80:80 -d nginx

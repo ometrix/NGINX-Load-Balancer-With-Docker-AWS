@@ -154,7 +154,7 @@ resource "aws_route_table_association" "c" {
 
 resource "aws_instance" "web" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.small"
+  instance_type = "t2.micro"
 #  count = 1
 
   key_name = "terra"
@@ -173,7 +173,7 @@ resource "aws_instance" "web" {
 
 resource "aws_instance" "web2" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.small"
+  instance_type = "t2.micro"
 #  count = 1
 
   key_name = "terra"
@@ -192,10 +192,10 @@ resource "aws_instance" "web2" {
 
 resource "aws_instance" "lb" {
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.small"
+  instance_type = "t2.micro"
 #  count = 1
 
-  key_name = "terra"
+  key_name = aws_key_pair.terra.key_name
 
   vpc_security_group_ids = [aws_security_group.default.id]
 
@@ -219,25 +219,16 @@ resource "aws_instance" "lb" {
 #  depends_on                = [aws_internet_gateway.gw]
 #}
 
-# Clave publica de SSH
-
-resource "aws_key_pair" "terra" {
-  key_name   = "terra"
-  public_key = file("./terra.ppk")
-}
-
 # Mostrar la Ip publica al terminar
 
-output "ip_publica" {
+output "ip_web" {
   value = aws_instance.web.public_ip
-#  value2 = aws_instance.web2.associate_public_ip_address
-#  value3 = aws_instance.lb.associate_public_ip_address
 }
 
-output "ip_publica2" {
+output "ip_web2" {
   value = aws_instance.web2.public_ip
 }
 
-output "ip_publica_lb" {
+output "ip_lb" {
   value = aws_instance.lb.public_ip
 }
