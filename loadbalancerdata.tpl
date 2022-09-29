@@ -18,6 +18,6 @@ sudo apt-get install libwww-perl git -y
 
 cd /home/ubuntu
 
-git clone https://github.com/ometrix/NGINX-Load-Balancer-With-Docker-AWS.git
+# git clone https://github.com/ometrix/NGINX-Load-Balancer-With-Docker-AWS.git
 
 docker run -v /home/ubuntu/NGINX-Load-Balancer-With-Docker-AWS/default.conf:/etc/nginx/conf.d/default.conf -p 80:80 -d nginx
