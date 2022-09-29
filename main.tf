@@ -204,6 +204,18 @@ resource "aws_instance" "lb" {
 
   user_data = data.template_file.lb_data.rendered
 
+  provisioner "file" {
+    source      = "./default.conf"
+    destination = "/home/ubuntu/default.conf"
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("terra")
+      host        = self.public_ip
+    }
+  }
+
   tags = {
     Name = "lb"
   }
